@@ -9,3 +9,15 @@ Currently only the following items are supported for configuration, but this cou
 * IP/Netmask
 * DHCP Server
 * DHCP Range
+
+## Requirements
+This script requires python3 to be installed along with the requests module. 
+
+## How to use
+To use this script, you must create an API user on FortiManager. Utilize the [Fortinet Docs](https://docs.fortinet.com/document/fortimanager/7.2.0/new-features/47777/fortimanager-supports-authentication-token-for-api-administrators-7-2-2) site for details.
+
+Put your API username and password in the script.py file under the username and password settings. 
+
+Fill out the locationSettings.csv and vlanSettings.csv files as appropriate. 
+
+Run the script. 
