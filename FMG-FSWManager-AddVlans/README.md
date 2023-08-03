@@ -18,6 +18,8 @@ To use this script, you must create an API user on FortiManager. Utilize the [Fo
 
 Fill in your FortiManager FQDN in the URL section of the script.
 
+Fill in your FortiManager ADOM the devices exist in. If ADOMs are disabled, type in root
+
 Put your API username and password in the script.py file under the username and password settings. 
 
 Fill out the locationSettings.csv and vlanSettings.csv files as appropriate. 

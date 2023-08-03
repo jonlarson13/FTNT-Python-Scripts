@@ -13,8 +13,11 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 # Set the URL for the FortiManager Rest API
 url = "https://{url}/jsonrpc"
 
+# Set the FortiManager adom the devices exist in. Fill in root if ADOMs are disabled
+fmgAdom = "fabric"
+
 # Set Username/Password for the FortiManager Rest API
-username = "{username}"
+username = "{user}"
 password = "{password}"
 
 # Set the excel file to read data from
@@ -96,7 +99,7 @@ def fmg_logout(sessionID):
 
  
 # FortiManager FSW Device Mapping Function
-def fsw_add_vlan(mappedDevice, locationID, locationIP, interfaceIp, interfaceIpMask, vlanID, vlanName, dhcpIpStart, dhcpIpEnd, sessionID):
+def fsw_add_vlan(mappedDevice, locationID, locationIP, interfaceIp, interfaceIpMask, vlanID, vlanName, dhcpIpStart, dhcpIpEnd, fmgAdom, sessionID):
     #set payload in structed syntax
     structuredPayload = {
         "method": "set",
@@ -131,7 +134,7 @@ def fsw_add_vlan(mappedDevice, locationID, locationIP, interfaceIp, interfaceIpM
                         
                     }
                 ],
-                "url": "/pm/config/adom/fabric/obj/fsp/vlan/" + str(vlanName) + "/dynamic_mapping"
+                "url": "/pm/config/adom/" + str(fmgAdom) + "/obj/fsp/vlan/" + str(vlanName) + "/dynamic_mapping"
             }
         ],
         "session": sessionID,
@@ -178,7 +181,7 @@ with open(locationFile, mode ="r") as file:
                 dhcpIpEnd=vlanRow['dhcpIpEnd']
 
                  # Parse through each VLAN and create it
-                createVlan = fsw_add_vlan(mappedDevice, locationID, locationIP, interfaceIp, interfaceIpMask, vlanID, vlanName, dhcpIpStart, dhcpIpEnd, sessionID)
+                createVlan = fsw_add_vlan(mappedDevice, locationID, locationIP, interfaceIp, interfaceIpMask, vlanID, vlanName, dhcpIpStart, dhcpIpEnd, fmgAdom, sessionID)
 
 
 # End FortiManager API session and print result
