@@ -16,6 +16,8 @@ This script requires python3 to be installed along with the requests module.
 ## How to use
 To use this script, you must create an API user on FortiManager. Utilize the [Fortinet Docs](https://docs.fortinet.com/document/fortimanager/7.2.0/new-features/47777/fortimanager-supports-authentication-token-for-api-administrators-7-2-2) site for details.
 
+Fill in your FortiManager FQDN in the URL section of the script.
+
 Put your API username and password in the script.py file under the username and password settings. 
 
 Fill out the locationSettings.csv and vlanSettings.csv files as appropriate. 
