@@ -13,7 +13,7 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 # Set the URL for the FortiManager Rest API
 url = "https://{url}/jsonrpc"
 
-# Set the FortiManager adom the devices exist in. Leave blank if ADOMs are disabled
+# Set the FortiManager adom the devices exist in. Fill in root if ADOMs are disabled
 fmgAdom = "fabric"
 
 # Set Username/Password for the FortiManager Rest API
