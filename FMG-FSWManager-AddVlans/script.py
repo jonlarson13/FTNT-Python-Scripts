@@ -13,6 +13,9 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 # Set the URL for the FortiManager Rest API
 url = "https://{url}/jsonrpc"
 
+# Set the FortiManager adom the devices exist in. Leave blank if ADOMs are disabled
+fmgAdom = "fabric"
+
 # Set Username/Password for the FortiManager Rest API
 username = "{username}"
 password = "{password}"
@@ -131,7 +134,7 @@ def fsw_add_vlan(mappedDevice, locationID, locationIP, interfaceIp, interfaceIpM
                         
                     }
                 ],
-                "url": "/pm/config/adom/fabric/obj/fsp/vlan/" + str(vlanName) + "/dynamic_mapping"
+                "url": "/pm/config/adom/" + str(fmgAdom) + "/obj/fsp/vlan/" + str(vlanName) + "/dynamic_mapping"
             }
         ],
         "session": sessionID,
