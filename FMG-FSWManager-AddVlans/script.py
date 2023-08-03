@@ -17,6 +17,8 @@ url = "https://{url}/jsonrpc"
 username = "{username}"
 password = "{password}"
 
+testline = ""
+
 # Set the excel file to read data from
 locationFile = "./FMG-FSWManager-AddVlans/locationSettings.csv" 
 vlanFile = "./FMG-FSWManager-AddVlans/vlanSettings.csv"
