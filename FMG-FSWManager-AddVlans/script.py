@@ -99,7 +99,7 @@ def fmg_logout(sessionID):
 
  
 # FortiManager FSW Device Mapping Function
-def fsw_add_vlan(mappedDevice, locationID, locationIP, interfaceIp, interfaceIpMask, vlanID, vlanName, dhcpIpStart, dhcpIpEnd, fmgAdom, sessionID):
+def fsw_add_vlan(mappedDevice, locationId, locationIp, interfaceIp, interfaceIpMask, vlanId, vlanName, dhcpIpStart, dhcpIpEnd, fmgAdom, sessionID):
     #set payload in structed syntax
     structuredPayload = {
         "method": "set",
@@ -118,18 +118,18 @@ def fsw_add_vlan(mappedDevice, locationID, locationIP, interfaceIp, interfaceIpM
                             "ip-mode": "range",
                             "ip-range": [
                                 {
-                                    "end-ip": str(locationIP) + "." + str(dhcpIpEnd),
-                                    "start-ip": str(locationIP) + "." + str(dhcpIpStart)
+                                    "end-ip": str(locationIp) + "." + str(dhcpIpEnd),
+                                    "start-ip": str(locationIp) + "." + str(dhcpIpStart)
                                 }
                             ],
                             "lease-time": 28800,
                         },
                         "interface": {
                             "ip": [
-                                str(locationIP) + "." + str(interfaceIp),
+                                str(locationIp) + "." + str(interfaceIp),
                                 str(interfaceIpMask)
                             ],
-                            "vlanid": str(vlanID)
+                            "vlanid": str(vlanId)
                         }
                         
                     }
@@ -165,9 +165,9 @@ with open(locationFile, mode ="r") as file:
     reader = csv.DictReader(file, delimiter=",")
 
     for locationRow in reader:
-        mappedDevice=locationRow['FW-Name']
-        locationID=locationRow['Location-ID']
-        locationIP=locationRow['Location-IP']
+        mappedDevice=locationRow['fwName']
+        locationId=locationRow['locationId']
+        locationIp=locationRow['locationIp']
 
         with open(vlanFile, mode="r") as file:
             reader = csv.DictReader(file, delimiter=",")
@@ -175,13 +175,13 @@ with open(locationFile, mode ="r") as file:
             for vlanRow in reader:
                 interfaceIp=vlanRow['interfaceIp']
                 interfaceIpMask=vlanRow['interfaceIpMask']
-                vlanID=vlanRow['vlanID']
+                vlanId=vlanRow['vlanId']
                 vlanName=vlanRow['vlanName']
                 dhcpIpStart=vlanRow['dhcpIpStart']
                 dhcpIpEnd=vlanRow['dhcpIpEnd']
 
                  # Parse through each VLAN and create it
-                createVlan = fsw_add_vlan(mappedDevice, locationID, locationIP, interfaceIp, interfaceIpMask, vlanID, vlanName, dhcpIpStart, dhcpIpEnd, fmgAdom, sessionID)
+                createVlan = fsw_add_vlan(mappedDevice, locationId, locationIp, interfaceIp, interfaceIpMask, vlanId, vlanName, dhcpIpStart, dhcpIpEnd, fmgAdom, sessionID)
 
 
 # End FortiManager API session and print result
